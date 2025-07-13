@@ -20,88 +20,111 @@ h2 { margin-top: 40px; font-size: 1.3rem; }
 .grid {
 display: grid;
 gap: 6px;
-grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-}
-.ramo {
-padding: 12px;
-border-radius: 8px;
-cursor: pointer;
-border: 2px solid transparent;
-text-align: center;
-font-size: 0.9rem;
-transition: all 0.2s ease-in-out;
-}
-.ramo.basic { background: var(--basic); }
-.ramo.prof { background: var(--prof); }
-.ramo.clin { background: var(--clin); }
-.ramo.elect { background: var(--elect); }
-.ramo.intern { background: var(--intern); }
-.ramo.pendiente { border-color: var(--pend); }
-.ramo.aprobado { background: #d0f0c0; text-decoration: line-through; }
-.ramo.reprobado { background: #f8d7da; }
-.legend {
-display: flex;
-flex-wrap: wrap;
-gap: 10px;
-margin: 30px auto;
-max-width: 800px;
-justify-content: center;
-}
-.legend span {
-display: flex;
-align-items: center;
-gap: 6px;
-font-size: 0.8rem;
-}
-.legend .box {
-width: 16px;
-height: 16px;
-border-radius: 4px;
-display: inline-block;
-}
-</style>
-</head>
-<body>
-<h1>Malla Interactiva de Obstetricia y Puericultura<br>ULagos Osorno 🩷</h1>
-<p style="text-align:center; max-width:800px; margin: 0 auto 20px">Haz clic en cada ramo para marcarlo como aprobado, reprobado o pendiente. Los colores representan distintas áreas temáticas, con estilo pink inspirado en el ejemplo que me enviaste 🧚‍♀️</p>
+grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+<h1>Malla Interactiva de Obstetricia y Puericultura – ULagos Osorno 🩷</h1>
+<p style="text-align:center; max-width:800px; margin: 0 auto 20px">Haz clic en cada ramo para marcarlo como aprobado, reprobado o pendiente. Los colores representan distintas áreas temáticas.</p>
 
-<h2>1º Semestre</h2>
+<!-- Semestres -->
+<script>
+const malla = [
+{
+titulo: "1º Semestre",
+ramos: [
+{ nombre: "Anatomía Humana", area: "basic" },
+{ nombre: "Biología Celular", area: "basic" },
+{ nombre: "Química General y Orgánica", area: "basic" },
+{ nombre: "Salud y Sociedad", area: "prof" },
+{ nombre: "Comunicación en Salud", area: "prof" },
+]
+},
+{
+titulo: "2º Semestre",
+ramos: [
+{ nombre: "Fisiología", area: "basic" },
+{ nombre: "Psicología General", area: "basic" },
+{ nombre: "Salud Sexual y Reproductiva I", area: "prof" },
+{ nombre: "Epidemiología", area: "prof" },
+{ nombre: "Inglés I", area: "prof" },
+]
+},
+{
+titulo: "3º Semestre",
+ramos: [
+{ nombre: "Microbiología y Parasitología", area: "basic" },
+{ nombre: "Embriología y Genética", area: "basic" },
+{ nombre: "Salud Familiar", area: "prof" },
+{ nombre: "Salud Sexual y Reproductiva II", area: "prof" },
+{ nombre: "Inglés II", area: "prof" },
+]
+},
+{
+titulo: "4º Semestre",
+ramos: [
+{ nombre: "Farmacología", area: "basic" },
+{ nombre: "Investigación en Salud", area: "prof" },
+{ nombre: "Salud Comunitaria", area: "prof" },
+{ nombre: "Promoción de la Salud", area: "prof" },
+{ nombre: "Psicología Evolutiva", area: "prof" },
+]
+},
+{
+titulo: "5º Semestre",
+ramos: [
+{ nombre: "Fisiopatología", area: "basic" },
+{ nombre: "Cuidados Preconcepcionales", area: "clin" },
+{ nombre: "Cuidados de la Gestación Normal", area: "clin" },
+{ nombre: "Nutrición y Salud", area: "prof" },
+]
+},
+{
+titulo: "6º Semestre",
+ramos: [
+{ nombre: "Cuidados de la Gestación Patológica", area: "clin" },
+{ nombre: "Cuidados del Parto y Nacimiento", area: "clin" },
+{ nombre: "Cuidados del Recién Nacido y Lactancia", area: "clin" },
+{ nombre: "Salud Mental y Psiquiatría", area: "prof" },
+]
+},
+{
+titulo: "7º Semestre",
+ramos: [
+{ nombre: "Cuidados Ginecológicos", area: "clin" },
+{ nombre: "Cuidados en Salud Sexual y Reproductiva", area: "clin" },
+{ nombre: "Electivo Farmacología Ginecoobstétrica", area: "elect" },
+{ nombre: "Gestión en Salud", area: "prof" },
+]
+},
+{
+titulo: "8º Semestre",
+ramos: [
+{ nombre: "Cuidados Perinatales en Situaciones Complejas", area: "clin" },
+{ nombre: "Práctica Integrada Clínica Gineco-Obstétrica", area: "clin" },
+{ nombre: "Investigación Aplicada a la Matronería", area: "prof" },
+]
+},
+{
+titulo: "9º Semestre",
+ramos: [
+{ nombre: "Internado en Atención Primaria", area: "intern" },
+{ nombre: "Internado en Atención Secundaria", area: "intern" },
+]
+},
+{
+titulo: "10º Semestre",
+ramos: [
+{ nombre: "Internado en Ginecología y Obstetricia", area: "intern" },
+{ nombre: "Taller de Titulación", area: "prof" },
+]
+}
+];
+
+document.write(malla.map(sem => `
+<h2>${sem.titulo}</h2>
 <div class="grid">
-<div class="ramo basic pendiente" onclick="toggle(this)">Anatomía Humana</div>
-<div class="ramo basic pendiente" onclick="toggle(this)">Biología Celular</div>
-<div class="ramo basic pendiente" onclick="toggle(this)">Química General y Orgánica</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Salud y Sociedad</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Comunicación en Salud</div>
+${sem.ramos.map(r => `<div class="ramo ${r.area} pendiente" onclick="toggle(this)">${r.nombre}</div>`).join('')}
 </div>
-
-<h2>2º Semestre</h2>
-<div class="grid">
-<div class="ramo basic pendiente" onclick="toggle(this)">Fisiología</div>
-<div class="ramo basic pendiente" onclick="toggle(this)">Psicología General</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Salud Sexual y Reproductiva I</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Epidemiología</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Inglés I</div>
-</div>
-
-<h2>3º Semestre</h2>
-<div class="grid">
-<div class="ramo basic pendiente" onclick="toggle(this)">Microbiología</div>
-<div class="ramo basic pendiente" onclick="toggle(this)">Embriología</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Salud Familiar</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Salud Sexual y Reproductiva II</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Inglés II</div>
-</div>
-
-<h2>4º Semestre</h2>
-<div class="grid">
-<div class="ramo basic pendiente" onclick="toggle(this)">Genética</div>
-<div class="ramo basic pendiente" onclick="toggle(this)">Farmacología</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Investigación en Salud</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Salud Comunitaria</div>
-<div class="ramo prof pendiente" onclick="toggle(this)">Promoción de la Salud</div>
-</div>
-
-<!-- Más semestres continúan... se agregan en siguiente parte si deseas -->
+`).join(''));
+</script>
 
 <div class="legend">
 <span><span class="box" style="background:var(--basic)"></span>Ciencias básicas</span>
@@ -127,3 +150,5 @@ el.classList.add('pendiente');
 </script>
 </body>
 </html>
+
+
