@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malla Obstetricia ULagos Osorno</title>
+<style>
+:root {
+--basic: #ffc8dd;
+--prof: #ffafcc;
+--clin: #fda4ba;
+--elect: #ffe5ec;
+--intern: #ffcad4;
+--pend: #ffecf2;
+}
+* { box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { margin: 0; background: #fff0f5; color: #333; padding: 20px; }
+h1, h2 { text-align: center; color: #d63384; margin-bottom: 10px; }
+h2 { margin-top: 40px; font-size: 1.3rem; }
+.grid {
+display: grid;
+gap: 6px;
+grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+.ramo {
+padding: 12px;
+border-radius: 8px;
+cursor: pointer;
+border: 2px solid transparent;
+text-align: center;
+font-size: 0.9rem;
+transition: all 0.2s ease-in-out;
+}
+.ramo.basic { background: var(--basic); }
+.ramo.prof { background: var(--prof); }
+.ramo.clin { background: var(--clin); }
+.ramo.elect { background: var(--elect); }
+.ramo.intern { background: var(--intern); }
+.ramo.pendiente { border-color: var(--pend); }
+.ramo.aprobado { background: #d0f0c0; text-decoration: line-through; }
+.ramo.reprobado { background: #f8d7da; }
+.legend {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+margin: 30px auto;
+max-width: 800px;
+justify-content: center;
+}
+.legend span {
+display: flex;
+align-items: center;
+gap: 6px;
+font-size: 0.8rem;
+}
+.legend .box {
+width: 16px;
+height: 16px;
+border-radius: 4px;
+display: inline-block;
+}
+</style>
+</head>
+<body>
+<h1>Malla Interactiva de Obstetricia y Puericultura<br>ULagos Osorno 🩷</h1>
+<p style="text-align:center; max-width:800px; margin: 0 auto 20px">Haz clic en cada ramo para marcarlo como aprobado, reprobado o pendiente. Los colores representan distintas áreas temáticas, con estilo pink inspirado en el ejemplo que me enviaste 🧚‍♀️</p>
+
+<h2>1º Semestre</h2>
+<div class="grid">
+<div class="ramo basic pendiente" onclick="toggle(this)">Anatomía Humana</div>
+<div class="ramo basic pendiente" onclick="toggle(this)">Biología Celular</div>
+<div class="ramo basic pendiente" onclick="toggle(this)">Química General y Orgánica</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Salud y Sociedad</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Comunicación en Salud</div>
+</div>
+
+<h2>2º Semestre</h2>
+<div class="grid">
+<div class="ramo basic pendiente" onclick="toggle(this)">Fisiología</div>
+<div class="ramo basic pendiente" onclick="toggle(this)">Psicología General</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Salud Sexual y Reproductiva I</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Epidemiología</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Inglés I</div>
+</div>
+
+<h2>3º Semestre</h2>
+<div class="grid">
+<div class="ramo basic pendiente" onclick="toggle(this)">Microbiología</div>
+<div class="ramo basic pendiente" onclick="toggle(this)">Embriología</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Salud Familiar</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Salud Sexual y Reproductiva II</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Inglés II</div>
+</div>
+
+<h2>4º Semestre</h2>
+<div class="grid">
+<div class="ramo basic pendiente" onclick="toggle(this)">Genética</div>
+<div class="ramo basic pendiente" onclick="toggle(this)">Farmacología</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Investigación en Salud</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Salud Comunitaria</div>
+<div class="ramo prof pendiente" onclick="toggle(this)">Promoción de la Salud</div>
+</div>
+
+<!-- Más semestres continúan... se agregan en siguiente parte si deseas -->
+
+<div class="legend">
+<span><span class="box" style="background:var(--basic)"></span>Ciencias básicas</span>
+<span><span class="box" style="background:var(--prof)"></span>Formación profesional</span>
+<span><span class="box" style="background:var(--clin)"></span>Clínicos</span>
+<span><span class="box" style="background:var(--intern)"></span>Internado</span>
+<span><span class="box" style="background:var(--elect)"></span>Electivo</span>
+</div>
+
+<script>
+function toggle(el) {
+if (el.classList.contains('pendiente')) {
+el.classList.remove('pendiente');
+el.classList.add('aprobado');
+} else if (el.classList.contains('aprobado')) {
+el.classList.remove('aprobado');
+el.classList.add('reprobado');
+} else {
+el.classList.remove('reprobado');
+el.classList.add('pendiente');
+}
+}
+</script>
+</body>
+</html>
